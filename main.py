@@ -4,11 +4,12 @@ import os
 from werkzeug.utils import secure_filename
 from PIL import Image
 import numpy as np
+from sklearn.cluster import KMeans
 
 SECRET_KEY = "sjdbfjksdbfjkwesf"
 UPLOAD_FOLDER = 'static/img/uploads'
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
-WORKING_WIDTH = 900
+ALLOWED_EXTENSIONS = {'jpg', 'jpeg'}
+WORKING_WIDTH = 600
 img_path = ""
 
 # ---------------------------- START FLASK FRAMEWORK ------------------------------- #
@@ -38,15 +39,16 @@ def process_colors(amount):
     # reshape 3D array to 2D array
     # -1 means unknown number of rows, 3 means there's 3 columns (RGB)
     img_data = img_data.reshape(-1, 3)
-    # find all unique RGB codes and their counts in the array
-    unique, counts = np.unique(img_data, axis=0, return_counts=True)
-    # get indices of the x (=amount) highest counts
-    index = np.argpartition(counts, -amount)[-amount:]
-    # find RGB codes with the index
-    top_colors = unique[index]
-    top_colors = top_colors.tolist()
-    return top_colors
-
+    # use KMeans to cluster similar colors together
+    color_cluster = KMeans(n_clusters=amount)
+    color_cluster.fit(img_data)
+    colors = color_cluster.cluster_centers_.tolist()
+    # change float to int, for better UX with RGB colors
+    color_palette = []
+    for rgb_list in colors:
+        new_colors = [int(value) for value in rgb_list]
+        color_palette.append(new_colors)
+    return color_palette
 
 
 # ---------------------------- SET UP ROUTES ------------------------------- #
@@ -60,7 +62,7 @@ def upload_file():
             flash('Please select a file!')
             return render_template('index.html')
         if not allowed_file(image_file.filename):
-            flash('Your image has to be a ".png", ".jpg", ".jpeg" or ".gif" file')
+            flash('Your image has to be a ".jpg" or ".jpeg" file')
             return render_template('index.html')
         if image_file and allowed_file(image_file.filename):
             # use secure_filename to prevent saving fraud files to the os

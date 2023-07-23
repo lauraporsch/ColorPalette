@@ -79,19 +79,13 @@ def show_image():
     global img_path
     if request.method == 'POST':
         amount_of_colors = int(request.form.get('amount'))
-        return redirect(url_for('show_colors', amount=amount_of_colors))
+        top_colors = process_colors(amount_of_colors)
+        colors = []
+        for color in top_colors:
+            colors.append(tuple(color))
+        return render_template('show-image.html', image_path=img_path, colors=colors, palette=True)
     else:
-        return render_template('show-image.html', image_path=img_path)
-
-
-@app.route('/show-colors/<int:amount>')
-def show_colors(amount):
-    top_colors = process_colors(amount)
-    colors = []
-    for color in top_colors:
-        colors.append(tuple(color))
-    print(colors)
-    return render_template('colors.html', colors=colors)
+        return render_template('show-image.html', image_path=img_path, palette=False)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,16 @@
+{% include "header.html" %}
+<h1> Please upload the image for processing here</h1>
+{% with messages = get_flashed_messages() %}
+    {% if messages: %}
+        {% for message in messages: %}
+            <p class="flashes">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<form method="POST" action="{{ url_for('upload_file') }}" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <input type="submit" value="Upload">
+</form>
+
+{% include "footer.html" %}

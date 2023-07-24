@@ -34,7 +34,8 @@ Example of extracting 6 colors from the image file
 ![image](https://github.com/lauraporsch/ColorPalette/assets/127047376/372ab1d5-0618-4e6b-9fe4-0f367f7efd15)
 
 Example of extracting 4 and 10 colors from the same image file
-![image](https://github.com/lauraporsch/ColorPalette/assets/127047376/309f5ce9-cc54-49d4-875f-050489d2cdb8)
+![image](https://github.com/lauraporsch/ColorPalette/assets/127047376/c1478ef2-3bfd-4b62-90c1-e78be2771865)
+
 
 ![image](https://github.com/lauraporsch/ColorPalette/assets/127047376/fdfcc2fe-9a46-4c30-a0e1-f67d39afb29a)
 

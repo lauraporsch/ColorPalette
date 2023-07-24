@@ -11,10 +11,12 @@ I used the scikitlearn KMeans-clustering method to group similar colors together
 - Uploading an image file on a website with HTML-tags <form> and <input>
 - Creating a dropdown menu for User Input with the help of HTML-tags <form> and <select>
 - Using CSS inline-style to pass over variables from Python Code (RGB colors)
+  
 ## Python
 - Checking the image file for the right file format
 - Using Werkzeug Utilities to create a secure filename before saving the image file
 - Processing images with the Pillow library, including resizing an image
+  
 ## Numpy
 - Turning an image into numpy 3D-array and how they represent RGB image data
 - Reshaping a numpy ndarray

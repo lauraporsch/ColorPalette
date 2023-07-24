@@ -8,8 +8,8 @@ I used the scikitlearn KMeans-clustering method to group similar colors together
 
 # What I learned / used for the first time:
 # HTML / CSS:
-- Uploading an image file on a website with HTML-tags <form> and <input>
-- Creating a dropdown menu for User Input with the help of HTML-tags <form> and <select>
+- Uploading an image file on a website with HTML-tags form and input
+- Creating a dropdown menu for User Input with the help of HTML-tags form and select
 - Using CSS inline-style to pass over variables from Python Code (RGB colors)
   
 # Python

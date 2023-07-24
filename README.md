@@ -7,17 +7,17 @@ Processing the data with np.unique(data, axis=0, return_counts=True) and only ta
 I used the scikitlearn KMeans-clustering method to group similar colors together.
 
 # What I learned / used for the first time:
-## HTML / CSS:
+# HTML / CSS:
 - Uploading an image file on a website with HTML-tags <form> and <input>
 - Creating a dropdown menu for User Input with the help of HTML-tags <form> and <select>
 - Using CSS inline-style to pass over variables from Python Code (RGB colors)
   
-## Python
+# Python
 - Checking the image file for the right file format
 - Using Werkzeug Utilities to create a secure filename before saving the image file
 - Processing images with the Pillow library, including resizing an image
   
-## Numpy
+# Numpy
 - Turning an image into numpy 3D-array and how they represent RGB image data
 - Reshaping a numpy ndarray
 - Finding unique values and their counts in a numpy 2D-array
@@ -25,7 +25,7 @@ I used the scikitlearn KMeans-clustering method to group similar colors together
 - Grouping similar arrays using scikitlearn KMeans-clustering
 
 Homepage
-  ![image](https://github.com/lauraporsch/ColorPalette/assets/127047376/7dac00ea-e231-4bd4-939d-28181bedd874)
+![image](https://github.com/lauraporsch/ColorPalette/assets/127047376/7dac00ea-e231-4bd4-939d-28181bedd874)
 
 After inital upload of image file
 ![image](https://github.com/lauraporsch/ColorPalette/assets/127047376/b7f90a8e-9288-4187-bd48-85e9ee9e706e)

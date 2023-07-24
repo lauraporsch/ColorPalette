@@ -6,6 +6,8 @@ However I decided to go the long way to fully understand image processing with N
 Processing the data with np.unique(data, axis=0, return_counts=True) and only taking the highest count, leads to color palette with very similar colors, 
 I used the scikitlearn KMeans-clustering method to group similar colors together.
 
+It's not perfect, but I understand ndarrays and their use for image processing a lot better know.
+
 ## What I learned / used for the first time:
 ### HTML / CSS:
 - Uploading an image file on a website with HTML-tags form and input

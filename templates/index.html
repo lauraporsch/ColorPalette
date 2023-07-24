@@ -1,5 +1,5 @@
 {% include "header.html" %}
-<h1> Please upload the image for processing here</h1>
+<h2> Upload a .jpg or .jpeg file </h2>
 {% with messages = get_flashed_messages() %}
     {% if messages: %}
         {% for message in messages: %}
@@ -9,8 +9,8 @@
 {% endwith %}
 
 <form method="POST" action="{{ url_for('upload_file') }}" enctype="multipart/form-data">
-    <input type="file" name="file">
-    <input type="submit" value="Upload">
+    <input class="upload-btn" type="file" name="file">
+    <input class="upload-btn" type="submit" value="Upload">
 </form>
 
 {% include "footer.html" %}

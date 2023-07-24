@@ -6,7 +6,6 @@ from PIL import Image
 import numpy as np
 from sklearn.cluster import KMeans
 
-SECRET_KEY = "sjdbfjksdbfjkwesf"
 UPLOAD_FOLDER = 'static/img/uploads'
 ALLOWED_EXTENSIONS = {'jpg', 'jpeg'}
 WORKING_WIDTH = 600
@@ -15,7 +14,7 @@ img_path = ""
 # ---------------------------- START FLASK FRAMEWORK ------------------------------- #
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['SECRET_KEY'] = SECRET_KEY
+app.config['SECRET_KEY'] = os.environ["SECRET_KEY"]
 Bootstrap(app)
 
 
@@ -26,6 +25,10 @@ def allowed_file(filename):
 
 
 def process_colors(amount):
+    """opens the Image with Pillow library, resizes it for faster processing time. Turns Image data into a NumPy
+    3D-array (pixels in RGB color), reshapes it into 2D-array for processing. Groups similar arrays/colors with the
+    help of KMeans clusters, amount set by User. Turns clustered 2D-array into list and converts single values into
+    Integer for easier reuse of RGB colors. Returns list of RGB-colors."""
     global img_path
     img = Image.open(img_path)
     og_width = img.size[0]
@@ -54,15 +57,17 @@ def process_colors(amount):
 # ---------------------------- SET UP ROUTES ------------------------------- #
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
+    """renders 'index.html', if a file is chosen, uploads file to static/img/upload-directory, returns image-path,
+    redirects to 'show-image.html'"""
     global img_path
     if request.method == 'POST':
         image_file = request.files['file']
         # If user does not select a file, the browser submits an empty file
         if image_file.filename == '':
-            flash('Please select a file!')
+            flash('Please select a file')
             return render_template('index.html')
         if not allowed_file(image_file.filename):
-            flash('Your image has to be a ".jpg" or ".jpeg" file')
+            flash('The image has to be a ".jpg" or ".jpeg" file')
             return render_template('index.html')
         if image_file and allowed_file(image_file.filename):
             # use secure_filename to prevent saving fraud files to the os
@@ -76,6 +81,8 @@ def upload_file():
 
 @app.route('/show-image', methods=['GET', 'POST'])
 def show_image():
+    """renders 'show-image.html', shows image, gives Select Field for User Input, if select is used, calls
+    function 'process_colors' with User Input as Input, renders the Output as RGB color palette"""
     global img_path
     if request.method == 'POST':
         amount_of_colors = int(request.form.get('amount'))
